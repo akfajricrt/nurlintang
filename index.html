@@ -1,509 +1,695 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yayasan Nurlintang - Committed to Education, Faith, and Community Empowerment</title>
+    <title>Yayasan Nurlintang - Membangun Generasi Berakhlak dan Cerdas</title>
+    <meta name="description" content="Yayasan Nurlintang adalah lembaga pendidikan Islam yang berkomitmen membangun generasi berakhlak mulia dan cerdas melalui berbagai institusi pendidikan dan sosial.">
+    <meta name="keywords" content="yayasan islam, pendidikan islam, tahfidz, sekolah islam, panti asuhan, indonesia">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0f5132',
+                        'primary-light': '#198754',
+                        'primary-dark': '#0a3d26',
+                        'accent': '#ffd700',
+                        'emerald': '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Base styles for smooth anti-aliasing */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(15, 81, 50, 0.9), rgba(16, 185, 129, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23198754" width="1200" height="800"/><path fill="%23ffffff" opacity="0.1" d="M0,400 Q300,200 600,400 T1200,400 V800 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
         }
-        /* Playfair Display for headings for an elegant look */
-        h1, h2, h3, .font-heading {
-            font-family: 'Playfair Display', serif;
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
         }
-
-        /* Sophisticated Green Gradient */
-        .gradient-bg {
-            background: linear-gradient(135deg, #A8E6CF 0%, #5CB87C 100%); /* Light to Medium Green */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #A8E6CF 0%, #5CB87C 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        /* General Animations */
-        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
-        .animate-slide-up { animation: slideUp 0.7s ease-out forwards; }
-        .animate-slide-right { animation: slideRight 0.7s ease-out forwards; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideRight { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-
-        /* Card Hover Effect */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother cubic-bezier transition */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
         }
-        .card-hover:hover {
-            transform: translateY(-10px); /* Slightly more pronounced lift */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer, deeper shadow */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-
-        /* Custom style to prevent content overlap with sticky nav */
-        html {
-            scroll-padding-top: 4.5rem; /* Height of the sticky navbar */
-        }
-
-        /* Specific Hero Section styles for the new layout */
-        #hero .visual-background {
-            background-color: #E0FFE0; /* A very light green, almost off-white for the background of the image */
-            border-radius: 0.5rem; /* Matches image border-radius */
-            /* Removed skew/rotate here, will be applied to the image wrapper */
-        }
-
-        /* Responsive height for Hero image container to maintain aspect ratio */
-        #hero .image-container::before {
-            content: '';
-            display: block;
-            padding-top: 66.66%; /* For a 3:2 aspect ratio (height is 2/3 of width) */
-            border-radius: 0.5rem;
-        }
-        #hero .image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0.5rem;
-        }
-
-        /* Geometric shapes for visual flair in Hero */
-        #hero .geometric-shape {
-            position: absolute;
-            background-color: rgba(92, 184, 124, 0.2); /* Semi-transparent medium green */
-            border-radius: 50%; /* Circle shape */
-            filter: blur(50px); /* Soft blur effect */
-            z-index: 0; /* Behind other content */
-        }
-        #hero .shape-1 { width: 80px; height: 80px; top: 10%; left: 10%; }
-        #hero .shape-2 { width: 120px; height: 120px; bottom: 15%; right: 15%; }
-        #hero .shape-3 { width: 60px; height: 60px; top: 40%; right: 5%; }
-
-        /* Shadow for nav transition to next section */
-        .shadow-inner-top {
-            box-shadow: inset 0 10px 15px -3px rgba(0, 0, 0, 0.05), inset 0 4px 6px -2px rgba(0, 0, 0, 0.01);
+        .scroll-smooth {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-relaxed overflow-x-hidden">
-
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300 ease-in-out">
+<body class="scroll-smooth">
+    <nav class="glass-effect fixed w-full top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0">
-                    <h1 class="text-xl md:text-2xl font-bold text-gradient font-heading">Yayasan Nurlintang</h1>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-6">
-                        <a href="#about" class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm md:text-base font-medium transition-colors duration-200">Tentang Kami</a>
-                        <a href="#units" class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm md:text-base font-medium transition-colors duration-200">Unit Pendidikan</a>
-                        <a href="#program" class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm md:text-base font-medium transition-colors duration-200">Program</a>
-                        <a href="#contact" class="text-gray-700 hover:text-green-700 px-3 py-2 rounded-md text-sm md:text-base font-medium transition-colors duration-200">Kontak</a>
-                        <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm md:text-base font-semibold transition-colors duration-200">Donasi</a>
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-mosque text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary">Yayasan Nurlintang</h1>
+                        <p class="text-xs text-gray-600">Membangun Generasi Berakhlak</p>
                     </div>
                 </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-green-700 focus:outline-none p-2 rounded-md transition-colors duration-200">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#beranda" class="text-gray-700 hover:text-primary transition-colors">Beranda</a>
+                    <a href="#tentang" class="text-gray-700 hover:text-primary transition-colors">Tentang</a>
+                    <a href="#institusi" class="text-gray-700 hover:text-primary transition-colors">Institusi</a>
+                    <a href="#berita" class="text-gray-700 hover:text-primary transition-colors">Berita</a>
+                    <a href="#galeri" class="text-gray-700 hover:text-primary transition-colors">Galeri</a>
+                    <a href="#kontak" class="text-gray-700 hover:text-primary transition-colors">Kontak</a>
                 </div>
+
+                <button class="bg-accent hover:bg-yellow-500 text-primary px-6 py-2 rounded-full font-semibold transition-colors shadow-lg">
+                    <i class="fas fa-hand-holding-heart mr-2"></i>Donasi
+                </button>
+
+                
+
+                <button id="mobileMenuToggle" class="md:hidden text-primary" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 transition-all duration-300 ease-in-out origin-top scale-y-0 opacity-0">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#about" class="text-gray-700 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Tentang Kami</a>
-                <a href="#units" class="text-gray-700 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Unit Pendidikan</a>
-                <a href="#program" class="text-gray-700 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Program</a>
-                <a href="#contact" class="text-gray-700 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Kontak</a>
-                <a href="#" class="bg-green-500 hover:bg-green-600 text-white block px-4 py-2 rounded-md text-base font-semibold transition-colors duration-200">Donasi</a>
+
+        <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#beranda" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Beranda</a>
+                <a href="#tentang" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Tentang</a>
+                <a href="#institusi" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Institusi</a>
+                <a href="#berita" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Berita</a>
+                <a href="#galeri" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Galeri</a>
+                <a href="#kontak" class="block py-2 text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">Kontak</a>
             </div>
         </div>
     </nav>
 
-    <section id="hero" class="bg-gray-50 relative overflow-hidden py-20 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:gap-8">
-            <div class="px-4 sm:px-6 lg:px-8 text-center lg:text-left z-10">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-heading mb-6 animate-slide-right">
-                    Mewujudkan Generasi Rabbani,<br>
-                    Cerdas, dan Mandiri
-                </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-700 animate-slide-right" style="animation-delay: 0.2s;">
-                    Yayasan Nurlintang berdedikasi untuk pendidikan holistik yang berlandaskan nilai-nilai Islam, mengembangkan potensi intelektual, spiritual, dan kemandirian peserta didik.
-                </p>
-                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-right" style="animation-delay: 0.4s;">
-                    <a href="#about" class="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition-all duration-300 shadow-md">
-                        Pelajari Lebih Lanjut
-                    </a>
-                    <a href="#units" class="inline-flex items-center border-2 border-green-300 text-green-500 px-6 py-3 rounded-full font-semibold hover:bg-green-100 transition-all duration-300">
-                        Lihat Unit Pendidikan
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
-                </div>
-            </div>
-            <div class="relative px-4 sm:px-6 lg:px-8">
-                <div class="relative w-full image-container rounded-lg shadow-xl z-10 animate-fade-in visual-background" style="animation-delay: 0.6s;">
-                    <img src="https://via.placeholder.com/800x600/D4F4E4/333333" alt="Ilustrasi Pendidikan Islami" class="rounded-lg">
-                </div>
-                <div class="geometric-shape shape-1"></div>
-                <div class="geometric-shape shape-2"></div>
-                <div class="geometric-shape shape-3"></div>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-sm shadow-inner-top"></div>
-    </section>
-
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-heading">
-                Tentang <span class="text-gradient">Yayasan Nurlintang</span>
-            </h2>
-            <div class="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto space-y-6 animate-slide-up" style="animation-delay: 0.1s;">
-                <p>
-                    Yayasan Nurlintang hadir sebagai wadah pengembangan pendidikan Islam yang terintegrasi, menggabungkan nilai-nilai pesantren dengan metodologi pendidikan modern. Kami berkomitmen untuk melahirkan generasi pemimpin Muslim yang berilmu, beriman, dan berakhlak mulia.
-                </p>
-                <p>
-                    Melalui unit-unit pendidikan yang beragam, mulai dari tingkat dasar hingga menengah, kami menyediakan lingkungan belajar yang holistik. Kami menekankan pada pembentukan karakter, pencapaian akademik, serta kepedulian sosial, mempersiapkan siswa untuk menghadapi tantangan zaman dengan bekal keislaman yang kuat.
-                </p>
-                <p>
-                    Visi kami adalah menjadi lembaga pendidikan Islam terkemuka yang berkontribusi aktif dalam mencerdaskan kehidupan bangsa dan memberdayakan masyarakat. Kami percaya bahwa pendidikan adalah kunci kemajuan umat, dan Yayasan Nurlintang hadir untuk mewujudkan visi tersebut.
-                </p>
+    <section id="beranda" class="hero-bg min-h-screen flex items-center justify-center text-white">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Membangun Generasi
+                <span class="text-accent">Berakhlak</span> dan
+                <span class="text-accent">Cerdas</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+                Yayasan Nurlintang berkomitmen mendidik generasi Muslim yang unggul dalam ilmu pengetahuan dan akhlak mulia melalui pendidikan holistik yang berkualitas.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#institusi" class="bg-accent hover:bg-yellow-500 text-primary px-8 py-4 rounded-full font-semibold text-lg transition-colors shadow-lg">
+                    <i class="fas fa-play mr-2"></i>Jelajahi Program Kami
+                </a>
+                <a href="#kontak" class="border-2 border-white hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors">
+                    <i class="fas fa-phone mr-2"></i>Hubungi Kami
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="units" class="py-20 bg-white">
+    <section id="tentang" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading animate-slide-up">
-                    Unit <span class="text-gradient">Pendidikan Kami</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.1s;">
-                    Ekosistem pendidikan yang terintegrasi, menyediakan jenjang pendidikan yang berkelanjutan dari usia dini hingga menengah.
+                <h2 class="text-4xl font-bold text-primary mb-4">Tentang Yayasan Nurlintang</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Didirikan dengan visi mulia untuk mencerdaskan bangsa melalui pendidikan Islam yang berkualitas dan komprehensif.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover-lift">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-history text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Pesantren Nurlintang</h3>
-                    <p class="text-gray-600 leading-relaxed">Pendidikan pesantren terpadu yang fokus pada hafalan Al-Quran, ilmu agama klasik, dan pengembangan karakter Islami.</p>
+                    <h3 class="text-2xl font-bold text-primary mb-4 text-center">Sejarah</h3>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Berdiri sejak 1995, Yayasan Nurlintang telah mengabdi selama lebih dari 25 tahun dalam dunia pendidikan Islam di Indonesia, melahirkan ribuan alumni yang sukses dan berakhlak mulia.
+                    </p>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                        </svg>
+                <div class="bg-white rounded-xl p-8 shadow-lg hover-lift">
+                    <div class="w-16 h-16 bg-emerald rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-eye text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Madrasah Ibtidaiyah</h3>
-                    <p class="text-gray-600 leading-relaxed">Sekolah dasar Islam yang mengintegrasikan kurikulum nasional dengan pendidikan agama yang kuat.</p>
+                    <h3 class="text-2xl font-bold text-primary mb-4 text-center">Visi</h3>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Menjadi lembaga pendidikan Islam terdepan yang menghasilkan generasi yang unggul dalam iman, ilmu, dan akhlak untuk kemajuan bangsa dan agama.
+                    </p>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                        </svg>
+                <div class="bg-white rounded-xl p-8 shadow-lg hover-lift">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-bullseye text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Madrasah Tsanawiyah</h3>
-                    <p class="text-gray-600 leading-relaxed">Sekolah menengah pertama Islam dengan fokus pada pengembangan ilmu pengetahuan dan karakter Islami yang mendalam.</p>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Madrasah Aliyah</h3>
-                    <p class="text-gray-600 leading-relaxed">Sekolah menengah atas Islam yang mempersiapkan siswa untuk melanjutkan pendidikan tinggi dengan pemahaman agama yang komprehensif.</p>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover md:col-span-2 lg:col-span-1">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Tahfidz Quran Center</h3>
-                    <p class="text-gray-600 leading-relaxed">Pusat pendidikan khusus untuk menghafal Al-Quran dengan metode yang efektif dan terstruktur.</p>
+                    <h3 class="text-2xl font-bold text-primary mb-4 text-center">Misi</h3>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Menyelenggarakan pendidikan Islam yang holistik, memberdayakan masyarakat melalui program sosial, dan mencetak kader pemimpin masa depan.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="program" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-heading animate-slide-up">
-                Program <span class="text-gradient">Unggulan</span>
-            </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.1s;">
-                Berbagai program unggulan yang dirancang untuk mengembangkan potensi siswa secara holistik.
-            </p>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Beasiswa Pendidikan</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">Program beasiswa untuk mendukung siswa berprestasi dari keluarga kurang mampu.</p>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Pengembangan Karakter</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">Program pembinaan karakter Islami melalui kegiatan ekstrakurikuler dan mentoring.</p>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Kewirausahaan Santri</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">Pelatihan kewirausahaan untuk menumbuhkan jiwa mandiri dan kreatif pada siswa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="gradient-bg text-white py-16">
+    <section id="institusi" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="footer-col">
-                    <h3 class="text-xl font-bold mb-6 font-heading">Alamat</h3>
-                    <div class="space-y-3 text-green-100">
-                        <p class="flex items-start">
-                            <svg class="w-5 h-5 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            Jalan Pendidikan No. 123<br>
-                            Yogyakarta, DIY 55281<br>
-                            Indonesia
-                        </p>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Institusi Kami</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Berbagai lembaga pendidikan dan sosial yang terintegrasi untuk memberikan layanan terbaik bagi masyarakat.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-primary to-emerald rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-child text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">TK Islam Nurlintang</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Pendidikan anak usia dini dengan pendekatan Islam yang menyenangkan</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-users mr-1"></i>150+ Siswa
+                        </span>
                     </div>
                 </div>
 
-                <div class="footer-col">
-                    <h3 class="text-xl font-bold mb-6 font-heading">Kontak</h3>
-                    <div class="space-y-3 text-green-100">
-                        <p class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                            +62 274 123-4567
-                        </p>
-                        <p class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                            info@nurlintang.org
-                        </p>
-                        <p class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-                            </svg>
-                            www.nurlintang.org
-                        </p>
+                <div class="bg-gradient-to-br from-emerald to-primary-light rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-graduation-cap text-emerald text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">SD Islam Nurlintang</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Sekolah dasar dengan kurikulum nasional plus nilai-nilai Islami</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-users mr-1"></i>300+ Siswa
+                        </span>
                     </div>
                 </div>
 
-                <div class="footer-col">
-                    <h3 class="text-xl font-bold mb-6 font-heading">Ikuti Kami</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.096.119.113.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.747 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.989C24.007 5.367 18.641.001 12.017.001z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
+                <div class="bg-gradient-to-br from-primary-light to-primary rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-quran text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Rumah Tahfidz</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Program menghafal Al-Quran dengan metode yang efektif dan menyenangkan</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-users mr-1"></i>80+ Santri
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-accent to-yellow-500 rounded-xl p-6 text-primary hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Panti Asuhan</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Rumah kasih sayang untuk anak-anak yatim dan dhuafa</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-users mr-1"></i>45+ Anak
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-primary-dark to-primary rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-mosque text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Masjid Al-Ikhlas</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Pusat kegiatan ibadah dan dakwah untuk masyarakat sekitar</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-pray mr-1"></i>500+ Jamaah
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-emerald to-green-600 rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-hands-helping text-emerald text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Lazis Nurlintang</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Lembaga amil zakat yang mengelola dan menyalurkan dana sosial</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-hand-holding-usd mr-1"></i>Terpercaya
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-primary to-primary-dark rounded-xl p-6 text-white hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-user-md text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Klinik Sehat</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Layanan kesehatan gratis untuk masyarakat kurang mampu</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-accent text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-stethoscope mr-1"></i>24/7
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-500 to-accent rounded-xl p-6 text-primary hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-seedling text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Agro Nurlintang</h3>
+                    <p class="text-sm opacity-90 text-center mb-4">Program pertanian organik dan pemberdayaan ekonomi umat</p>
+                    <div class="text-center">
+                        <span class="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            <i class="fas fa-leaf mr-1"></i>Organik
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="berita" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Berita & Kegiatan</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Ikuti perkembangan terbaru dan berbagai kegiatan menarik dari seluruh institusi Yayasan Nurlintang.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-primary to-emerald"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm font-semibold">TK Islam</span>
+                            <span class="text-gray-500 text-sm ml-3">
+                                <i class="fas fa-calendar mr-1"></i>15 Juli 2025
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Wisuda TK Islam Nurlintang 2025</h3>
+                        <p class="text-gray-600 mb-4">Sebanyak 45 siswa TK Islam Nurlintang berhasil menyelesaikan pendidikan dengan prestasi membanggakan...</p>
+                        <a href="#" class="text-primary hover:text-emerald font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
-                    <div class="mt-6">
-                        <p class="text-green-100 text-sm">Tetap terhubung dengan kabar terbaru dan program pendidikan kami.</p>
+                </article>
+
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-emerald to-primary-light"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">Tahfidz</span>
+                            <span class="text-gray-500 text-sm ml-3">
+                                <i class="fas fa-calendar mr-1"></i>12 Juli 2025
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Khataman 30 Juz Santri Tahfidz</h3>
+                        <p class="text-gray-600 mb-4">Alhamdulillah, 8 santri berhasil menyelesaikan hafalan 30 juz Al-Quran dalam acara yang khidmat...</p>
+                        <a href="#" class="text-primary hover:text-emerald font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-accent to-yellow-500"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-emerald text-white px-3 py-1 rounded-full text-sm font-semibold">Sosial</span>
+                            <span class="text-gray-500 text-sm ml-3">
+                                <i class="fas fa-calendar mr-1"></i>10 Juli 2025
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Bakti Sosial Ramadhan 2025</h3>
+                        <p class="text-gray-600 mb-4">Program bakti sosial berhasil menyalurkan 500 paket sembako kepada keluarga prasejahtera...</p>
+                        <a href="#" class="text-primary hover:text-emerald font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                    <i class="fas fa-newspaper mr-2"></i>Lihat Semua Berita
+                </button>
+            </div>
+        </div>
+    </section>
+
+<!--     <section id="galeri" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4">Galeri Kegiatan</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Dokumentasi berbagai kegiatan dan momen berharga dari seluruh unit Yayasan Nurlintang.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/0f5132/ffffff?text=Belajar+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Kegiatan Belajar</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/10b981/ffffff?text=Olahraga+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Olahraga</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/ffd700/0f5132?text=Sosial+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-primary font-semibold">Kegiatan Sosial</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/198754/ffffff?text=Wisuda+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Wisuda</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/0a3d26/ffffff?text=Ibadah+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Ibadah</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/0a3d26/ffffff?text=Ibadah+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Ibadah</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/10b981/ffffff?text=Pertanian+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Pertanian</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/ffd700/0f5132?text=Pameran+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-primary font-semibold">Pameran</span>
+                    </div>
+                </div>
+                <div class="h-48 rounded-lg hover-lift cursor-pointer relative overflow-hidden bg-cover bg-center" style="background-image: url('https://via.placeholder.com/400x300/0f5132/ffffff?text=Pelatihan+1');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <span class="text-white font-semibold">Pelatihan</span>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-green-500/30 mt-12 pt-8 text-center text-green-200">
-                <p>&copy; 2025 Yayasan Nurlintang. Semua Hak Dilindungi. | Dibangun dengan dedikasi untuk keunggulan pendidikan Islam.</p>
+            <div class="text-center mt-12">
+                <button class="bg-emerald hover:bg-green-600 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                    <i class="fas fa-images mr-2"></i>Lihat Semua Foto
+                </button>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="kontak" class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Hubungi Kami</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                    Kami siap melayani dan menjawab segala pertanyaan Anda. Hubungi kami melalui berbagai cara berikut.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-map-marker-alt text-primary text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Alamat</h3>
+                            <p class="opacity-90 leading-relaxed">
+                                Jl. Raya Pendidikan No. 123<br>
+                                Kelurahan Nurlintang, Kecamatan Cerdas<br>
+                                Jakarta Timur 13450, Indonesia
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-phone text-primary text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Telepon</h3>
+                            <p class="opacity-90">
+                                <a href="tel:+62211234567" class="hover:text-accent transition-colors">+62 21 1234-567</a><br>
+                                <a href="tel:+6281234567890" class="hover:text-accent transition-colors">+62 812-3456-7890</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-envelope text-primary text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Email</h3>
+                            <p class="opacity-90">
+                                <a href="mailto:info@nurlintang.org" class="hover:text-accent transition-colors">info@nurlintang.org</a><br>
+                                <a href="mailto:admin@nurlintang.org" class="hover:text-accent transition-colors">admin@nurlintang.org</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-clock text-primary text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Jam Operasional</h3>
+                            <p class="opacity-90">
+                                Senin - Jumat: 07:00 - 17:00<br>
+                                Sabtu: 07:00 - 12:00<br>
+                                Minggu: Tutup
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-8">
+                        <h3 class="text-xl font-bold mb-6">Ikuti Kami</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-primary transition-colors">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-primary transition-colors">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-primary transition-colors">
+                                <i class="fab fa-youtube text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-primary transition-colors">
+                                <i class="fab fa-whatsapp text-lg"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-primary transition-colors">
+                                <i class="fab fa-telegram text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 text-gray-800">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Kirim Pesan</h3>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="fullName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 outline-none transition-colors" placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 outline-none transition-colors" placeholder="nama@email.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Telepon</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 outline-none transition-colors" placeholder="+62 812-3456-7890">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Subjek</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 outline-none transition-colors">
+                                <option>Pilih topik pesan...</option>
+                                <option>Informasi Pendaftaran</option>
+                                <option>Program Tahfidz</option>
+                                <option>Donasi & Zakat</option>
+                                <option>Kerjasama</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Pesan</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 outline-none transition-colors resize-none" placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white py-3 rounded-lg font-semibold transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <div class="bg-white rounded-xl p-2">
+                    <div class="h-64 bg-gray-200 rounded-lg overflow-hidden">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.198284501625!2d106.843075214769!3d-6.287823995442598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3d9d3d3d3d3%3A0x123456789abcdef!2sJl.+Raya+Pendidikan+No.+123%2C+Jakarta+Timur!5e0!3m2!1sid!2sid!4v1678901234567!5m2!1sid!2sid"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                            <i class="fas fa-mosque text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Nurlintang</h3>
+                            <p class="text-sm text-gray-300">Yayasan Pendidikan Islam</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed text-sm">
+                        Membangun generasi Muslim yang berakhlak mulia, cerdas, dan siap berkontribusi untuk agama dan bangsa.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#beranda" class="hover:text-accent transition-colors text-gray-300">Beranda</a></li>
+                        <li><a href="#tentang" class="hover:text-accent transition-colors text-gray-300">Tentang Kami</a></li>
+                        <li><a href="#institusi" class="hover:text-accent transition-colors text-gray-300">Institusi</a></li>
+                        <li><a href="#berita" class="hover:text-accent transition-colors text-gray-300">Berita & Kegiatan</a></li>
+                        <li><a href="#galeri" class="hover:text-accent transition-colors text-gray-300">Galeri</a></li>
+                        <li><a href="#kontak" class="hover:text-accent transition-colors text-gray-300">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Institusi Kami</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">TK Islam Nurlintang</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">SD Islam Nurlintang</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">Rumah Tahfidz</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">Panti Asuhan</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">Masjid Al-Ikhlas</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors text-gray-300">Lazis Nurlintang</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Kontak</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-accent"></i>
+                            <span class="text-gray-300">Jl. Raya Pendidikan No. 123, Jakarta Timur</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-accent"></i>
+                            <a href="tel:+62211234567" class="hover:text-accent transition-colors text-gray-300">+62 21 1234-567</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-accent"></i>
+                            <a href="mailto:info@nurlintang.org" class="hover:text-accent transition-colors text-gray-300">info@nurlintang.org</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-accent"></i>
+                            <span class="text-gray-300">Senin - Jumat: 07:00 - 17:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Yayasan Nurlintang. Hak Cipta Dilindungi Undang-Undang. Didesain dengan <i class="fas fa-heart text-red-500 mx-1"></i> oleh Tim Nurlintang.</p>
             </div>
         </div>
     </footer>
 
+    <a href="https://wa.me/6281234567890" target="_blank" class="floating-whatsapp w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-green-600 transition-colors">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
-        // Mobile menu toggle functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+    }
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            // Animate mobile menu visibility using scale and opacity
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('scale-y-0', 'opacity-0');
-                mobileMenu.classList.add('scale-y-100', 'opacity-100');
-            } else {
-                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
-                mobileMenu.classList.add('scale-y-0', 'opacity-0');
-                // Give a slight delay before adding 'hidden' to allow animation to complete
-                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-            }
-        });
+    // Optional: Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        // Select the button more robustly, e.g., by ID or a specific class
+        const mobileMenuButton = document.getElementById('mobileMenuToggle'); // Added an ID to the button
 
-        // Smooth scrolling for all internal navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default jump behavior
-                const targetId = this.getAttribute('href'); // Get the target section ID
-                const targetElement = document.querySelector(targetId); // Get the target element
-                const navHeight = document.querySelector('nav').offsetHeight; // Get the height of the sticky navbar
+        // Check if the click was outside the menu AND outside the toggle button
+        if (mobileMenu.classList.contains('hidden')) {
+            // If the menu is already hidden, do nothing
+            return;
+        }
 
-                if (targetElement) {
-                    // Calculate the scroll position, adjusting for the sticky navbar's height
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - navHeight;
+        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth' // Smooth scroll effect
-                    });
-                }
-                // Close mobile menu if it's open after clicking a link
+    // Optional: Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            // Close mobile menu after clicking a link
+            if (window.innerWidth < 768) { // Only for mobile view
+                const mobileMenu = document.getElementById('mobileMenu');
                 if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.remove('scale-y-100', 'opacity-100');
-                    mobileMenu.classList.add('scale-y-0', 'opacity-0');
-                    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                    mobileMenu.classList.add('hidden');
                 }
-            });
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1, // Trigger when 10% of the element is visible
-            rootMargin: '0px 0px -50px 0px' // Reduce trigger area slightly from bottom to reveal elements earlier
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Apply animations when elements enter the viewport
-                    if (entry.target.classList.contains('animate-slide-up') || entry.target.classList.contains('animate-slide-right') || entry.target.classList.contains('animate-fade-in')) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) translateX(0)'; // Reset transforms
-                    }
-
-                    // Handle staggered animations for specific sections (Units, Program, Contact)
-                    if (entry.target.id === 'units' || entry.target.id === 'program' || entry.target.id === 'contact') {
-                        // Staggered animation for Unit Cards and Program Cards
-                        const cards = entry.target.querySelectorAll('.card-hover');
-                        cards.forEach((card, index) => {
-                            // Only animate if not already visible (opacity not 1)
-                            if (card.style.opacity !== '1') {
-                                card.style.animationDelay = `${index * 0.1}s`; // Stagger delay
-                                card.classList.add('animate-slide-up'); // Ensure the animation class is active
-                            }
-                        });
-
-                        // Staggered animation for Footer columns
-                        if (entry.target.id === 'contact') {
-                            const footerCols = entry.target.querySelectorAll('.footer-col');
-                            footerCols.forEach((col, index) => {
-                                if (col.style.opacity !== '1') {
-                                    col.style.animationDelay = `${index * 0.1}s`;
-                                    col.classList.add('animate-slide-up');
-                                }
-                            });
-                        }
-                    }
-                    // Stop observing once animated if you only want it to animate once
-                    // observer.unobserve(entry.target);
-                } else {
-                    // Optional: Reset state when element leaves view (for repeatable animations)
-                    // This is commented out by default as it can sometimes feel distracting.
-                    // If you want animations to re-trigger when scrolling back up, uncomment this:
-                    // if (entry.target.classList.contains('animate-slide-up')) {
-                    //     entry.target.style.opacity = '0';
-                    //     entry.target.style.transform = 'translateY(30px)';
-                    // } else if (entry.target.classList.contains('animate-slide-right')) {
-                    //     entry.target.style.opacity = '0';
-                    //     entry.target.style.transform = 'translateX(-30px)';
-                    // } else if (entry.target.classList.contains('animate-fade-in')) {
-                    //     entry.target.style.opacity = '0';
-                    // }
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for initial animation state setup and then apply observer
-        document.querySelectorAll(
-            '#hero .animate-slide-right, #hero .animate-fade-in, ' +
-            '#about h2, #about div, ' + // Observe children of about for general fade/slide
-            '#units h2, #units p, .card-hover, ' + // Observe children of units and individual cards
-            '#program h2, #program p, #program .card-hover, ' + // Observe children of program and individual cards
-            '#contact .footer-col' // Observe footer columns for staggered effect
-        ).forEach(element => {
-            // Set initial hidden state for elements that will be animated by JS
-            if (element.classList.contains('animate-slide-up')) {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-            } else if (element.classList.contains('animate-slide-right')) {
-                element.style.opacity = '0';
-                element.style.transform = 'translateX(-30px)';
-            } else if (element.classList.contains('animate-fade-in')) {
-                element.style.opacity = '0';
-            }
-            observer.observe(element); // Start observing the element
-        });
-
-
-        // Parallax effect for hero section (subtle effect)
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroContent = document.querySelector('#hero .max-w-7xl > div:first-child'); // Targeting the left content div
-            const heroImageContainer = document.querySelector('#hero .image-container'); // Targeting the image container
-            const heroVisualBackground = document.querySelector('#hero .visual-background'); // Targeting the background behind the image
-
-            if (heroContent) {
-                // Content moves slightly slower than the scroll
-                heroContent.style.transform = `translateY(${scrolled * 0.02}px)`;
-            }
-            if (heroImageContainer) {
-                // Image moves a bit faster than content, creating a subtle layer effect
-                heroImageContainer.style.transform = `translateY(${scrolled * 0.05}px)`;
-            }
-            if (heroVisualBackground) {
-                // Background behind image moves fastest, adding depth
-                heroVisualBackground.style.transform = `translateY(${scrolled * 0.08}px)`;
             }
         });
-
-        // Initial fade-in for the body on load
-        window.addEventListener('load', () => {
-            document.body.classList.add('animate-fade-in');
-        });
-    </script>
-
+    });
+</script>
 </body>
 </html>
